@@ -1,0 +1,56 @@
+[	
+	{
+		"model": "flot.Flot",
+		"pk": 1,
+		"fields": {
+			"score": 1,
+			"utc": 1990109
+		}
+
+	},
+
+
+	{
+		"model": "flot.Flot",
+		"pk": 2,
+		"fields": {
+			"score": 23,
+			"utc": 1990109
+		}
+
+	},
+
+	{
+		"model": "flot.Flot",
+		"pk": 3,
+		"fields": {
+			"score": 42,
+			"utc": 1990109
+		}
+
+	},
+
+	{
+		"model": "flot.Flot",
+		"pk": 4,
+		"fields": {
+			"score": 47,
+			"utc": 1990109
+		}
+
+	},
+
+
+	{
+		"model": "flot.Flot",
+		"pk": 5,
+		"fields": {
+			"score": 87,
+			"utc": 1990109
+		}
+
+	}
+
+
+
+]

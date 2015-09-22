@@ -52,6 +52,6 @@ def search(request):
 
 def test_func(request):
     
-    
+    print("We in test_func")
     context_dict = {}
-    return(render, 'test.html', context_dict)
+    return render(request, 'test.html', context_dict)

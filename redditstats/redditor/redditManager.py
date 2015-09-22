@@ -8,10 +8,6 @@ class RedditManager():
     def __init__(self):
         self.r = praw.Reddit("/u/habnpam testing stuff")
         
-        
-        
-    
-    
     
     def fetch_user(self, username):
         dd= 33

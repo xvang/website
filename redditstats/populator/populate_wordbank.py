@@ -1,4 +1,4 @@
-from wordbank.models import Word
+from redditstats.wordbank.models import Word
 
 
 

@@ -1,0 +1,47 @@
+[
+	{
+		"model": "wordbank.Word",
+		"fields": {
+			"adjective": "hilarious"
+		}
+
+	},
+
+	{
+		"model": "wordbank.Word",
+		"fields": {
+			"adjective": "valiant"
+		}
+
+	},
+
+
+	{
+		"model": "wordbank.Word",
+		"fields": {
+			"adjective": "noble"
+		}
+
+	},
+
+
+	{
+		"model": "wordbank.Word",
+		"fields": {
+			"adjective": "normal"
+		}
+
+	},
+
+
+	{
+		"model": "wordbank.Word",
+		"fields": {
+			"adjective": "weird"
+		}
+
+	}
+
+
+
+]

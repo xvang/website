@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'chartjs',
     'chartit',
     'wordbank',
-    
+    'flot',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,5 +116,14 @@ STATICFILES_DIRS = (
 #Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+
+
+#TEST STUFF?
+
+FIXTURE_DIRS = (
+
+    os.path.join(BASE_DIR, 'fixtures'),
+                
+    )
 
 
