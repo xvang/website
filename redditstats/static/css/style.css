@@ -1,0 +1,42 @@
+/*
+
+font-family: 'Amaranth', sans-serif;
+font-family: 'Chewy', cursive;
+font-family: 'Old Standard TT', serif;
+font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Bree Serif', serif;
+*/
+
+body{
+   
+    color: darkcyan;
+    background-color: darkseagreen;
+    text-align: center;
+    padding-top: 2.5%;
+    font-family: 'Bree Serif', serif;
+    font-size: 30px;
+    /*background: ;
+    background-size: contain;/
+}
+
+
+
+
+div.charts{
+    
+    padding:20px;
+    background-color: deepskyblue;
+}
+
+
+#terms{
+
+    position:absolute;
+    vertical-align: middle;
+     
+
+    text-align: center;
+    font-size:35px;
+    
+    color: blueviolet;
+}

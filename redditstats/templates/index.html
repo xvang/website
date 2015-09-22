@@ -1,0 +1,25 @@
+{% load staticfiles %} <!-- New line -->
+<!DOCTYPE html> 
+<html>
+    
+    <head>
+        <title>my new website</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+   
+        <!-- modernizr enables HTML5 elements and feature detects -->
+        
+    </head>
+
+    <body>
+        <p>Enter in a username (without the /u/)</p>
+        <br>
+        
+        <form action="{% url 'search' %}" method="GET">
+        
+            <input type="text" name="username">
+            <input type="submit" value="search">
+        </form>
+        <br>
+        {{ message }}
+    </body>
+</html>

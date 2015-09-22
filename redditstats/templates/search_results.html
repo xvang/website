@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body%}
+<html>
+    
+    <head>
+        <title>my new website</title>
+    </head>
+    
+    
+
+
+    <body>
+      
+        <div >
+    
+            
+            <p>About the {{adjective}} 
+                
+                <a href="http://www.reddit.com/u/{{username}}" target="_blank">/u/{{username}}</a>
+            </p>
+        
+            <p>Date joined: {{reddit.date_joined}}</p>
+
+        </div>
+        
+        <div id="rotate" ></div>
+   
+    </body>
+    
+    
+    
+    
+</html>
+{% endblock %}
