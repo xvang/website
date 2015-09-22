@@ -1,5 +1,0 @@
-Get the first chart working. flot. sample data has been created. test page is also created.
-
----------------------------------
-
-
