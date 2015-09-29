@@ -1,0 +1,70 @@
+[
+	{
+
+		"model": "chart.MonthlyWeatherByCity",
+		"fields": {
+			"month": 1,
+			"boston_temp": 12,
+			"houston_temp": 24
+		}
+
+	},
+
+{
+
+		"model": "chart.MonthlyWeatherByCity",
+		"fields": {
+			"month": 2,
+			"boston_temp": 19,
+			"houston_temp": 34
+		}
+
+	},
+
+{
+
+		"model": "chart.MonthlyWeatherByCity",
+		"fields": {
+			"month": 3,
+			"boston_temp": 35,
+			"houston_temp": 60
+		}
+
+	},
+
+{
+
+		"model": "chart.MonthlyWeatherByCity",
+		"fields": {
+			"month": 4,
+			"boston_temp": 55,
+			"houston_temp": 78
+		}
+
+	},
+
+{
+
+		"model": "chart.MonthlyWeatherByCity",
+		"fields": {
+			"month": 5,
+			"boston_temp": 40,
+			"houston_temp":79 
+		}
+
+	},
+
+{
+
+		"model": "chart.MonthlyWeatherByCity",
+		"fields": {
+			"month": 6,
+			"boston_temp": 68,
+			"houston_temp": 97
+		}
+
+	}
+
+
+
+]

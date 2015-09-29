@@ -1,10 +1,33 @@
-{% extends "base.html" %}
-{% load staticfiles %}
-<html>
-    <head>
-    </head>
+{% extends 'base.html' %}
 
-    <body>
+
+{% block head %}
+
+{% load googlecharts %}
+{% endblock %}
+
+
+{% block body %}
+
+<div id="out"></div>
+{% googlecharts %}
+    {# named data and options can be reused #}
+    {% data values "out_data" %}
+        {% col "string" "Name" %}"{{ val }}"{% endcol %}
+        {% col "number" "Value" %}{{ val }}{% endcol %}
+    {% enddata %}
+    {# you can also use global javascript variables here, #}
+    {# and call functions #}
+    {% options "out_options" %}
+        kind: "PieChart",
+        options: {
+            width: 900,
+            height: 720,
         
-    </body>
-</html>
+        }
+    {% endoptions %}
+    {# chart is assembled from container, data and options #}
+    {% graph "out" "out_data" "out_options" %}
+{% endgooglecharts %}
+
+{% endblock %}

@@ -16,7 +16,7 @@ body{
     font-family: 'Bree Serif', serif;
     font-size: 30px;
     /*background: ;
-    background-size: contain;/
+    background-size: contain;/*/
 }
 
 
@@ -39,4 +39,10 @@ div.charts{
     font-size:35px;
     
     color: blueviolet;
+}
+
+
+#piechart{
+    display: inline-block;
+    margin: 0 auto;
 }

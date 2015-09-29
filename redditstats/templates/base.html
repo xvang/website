@@ -2,29 +2,41 @@
 
 <!DOCTYPE html> 
 
-<head>
+<html>
+    <head>
     
-</head>
+        {% block head %}
+        {% endblock %}
+    </head>
 
-{%block body%}
+    <body>
+        {%block body%}
 
-{% endblock %}
+        {% endblock %}
+    </body>
+    
 
 
 
-
-{% block static%}
-<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/info.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-    <link href='https://fonts.googleapis.com/css?family=Bree+Serif|Gloria+Hallelujah|Old+Standard+TT|Chewy|Amaranth' rel='stylesheet' type='text/css'>
-    <script>
-        /*To pass in django stuff to Javascript, I declare Javascript variables here as global variables.*/
-            var $terms = {{ reddit.quotes|safe }};
-    </script>
-       
-        <!-- modernizr enables HTML5 elements and feature detects -->
+    {% block static%}
+    
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link href='https://fonts.googleapis.com/css?family=Bree+Serif|Gloria+Hallelujah|Old+Standard+TT|Chewy|Amaranth' rel='stylesheet' type='text/css'/>
 
-{% endblock %}
+        <script>
+            /*To pass in django stuff to Javascript, I declare Javascript variables here as global variables.*/
+            var $terms = {{ reddit.quotes|safe }};
+        </script>
+
+            <!-- modernizr enables HTML5 elements and feature detects -->
+
+    <script type="text/javascript" src="{% static 'js/info.js' %}"></script>
+    {% endblock %}
+
+
+
+
+</html>

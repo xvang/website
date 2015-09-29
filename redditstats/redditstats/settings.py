@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'chartit',
     'wordbank',
     'flot',
+    'googlecharts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,8 +112,16 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    
     )
-  
+
+
+STATICFILE_FINDERS = [
+    
+    'djangobower.finders.BowerFinder',
+    
+    
+    ]
 #Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
@@ -127,3 +136,13 @@ FIXTURE_DIRS = (
     )
 
 
+#BOWER STUFF
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
+BOWER_INSTALLED_APPS = (
+    'jquery#1.9',
+    'underscore',
+)
+
+BOWER_PATH = '/usr/bin/bower'

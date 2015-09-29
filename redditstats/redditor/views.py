@@ -1,10 +1,23 @@
 from django.shortcuts import render
 
 from redditManager import RedditManager
+from chartManager import ChartManager
 # Create your views here.
+
+from graphos.renderers import flot
+from graphos.sources.model import SimpleDataSource
+from django.shortcuts import render_to_response
+
+from chartit import DataPool, Chart
+from chart.models import MonthlyWeatherByCity
+
 
 
 redditManager = RedditManager()
+chartManager = ChartManager(redditManager)
+
+
+
 from wordbank.models import Word
 
 
@@ -45,13 +58,67 @@ def search(request):
     
     
     context_dict['reddit'] = redditManager.gather_info(username=request.GET['username'])
-                                                       
+
+    #context_dict['flot_line'] = chartManager.flot_line_chart()
+
+    context_dict['values'] = [['foo', 32], ['bar', 64], ['baz', 96]]
 
     return render(request, 'search_results.html', context_dict)
-    
+  
+
+  
 
 def test_func(request):
     
-    print("We in test_func")
     context_dict = {}
+    
+    context_dict['values'] = [['foo', 32], ['bar', 64], ['baz', 96]]
+    
+    
     return render(request, 'test.html', context_dict)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

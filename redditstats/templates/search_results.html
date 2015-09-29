@@ -1,35 +1,49 @@
 {% extends "base.html" %}
 
-{% block body%}
-<html>
-    
-    <head>
-        <title>my new website</title>
-    </head>
-    
-    
 
-
-    <body>
-      
-        <div >
-    
-            
-            <p>About the {{adjective}} 
-                
-                <a href="http://www.reddit.com/u/{{username}}" target="_blank">/u/{{username}}</a>
-            </p>
-        
-            <p>Date joined: {{reddit.date_joined}}</p>
-
-        </div>
-        
-        <div id="rotate" ></div>
-   
-    </body>
-    
-    
-    
-    
-</html>
+{% block head %}
+    <title>my new website</title>
+    {% load googlecharts %}
 {% endblock %}
+
+
+
+{% block body%}
+
+    <div >      
+        <p>About the {{adjective}}          
+            <a href="http://www.reddit.com/u/{{username}}" target="_blank">/u/{{username}}</a>
+        </p>
+
+        <p>Date joined: {{reddit.date_joined}}</p>
+        </div> 
+
+
+    <div id="rotate" ></div>
+
+
+    <br><br><br>
+    <div id="piechart"> 
+        {% googlecharts %}
+            {# named data and options can be reused #}
+            {% data values "out_data" %}
+                {% col "string" "Name" %}"{{ val }}"{% endcol %}
+                {% col "number" "Value" %}{{ val }}{% endcol %}
+            {% enddata %}
+            {# you can also use global javascript variables here, #}
+            {# and call functions #}
+            {% options "out_options" %}
+                kind: "PieChart",
+                options: {
+                    width: 600,
+                    height: 480,
+
+                }
+            {% endoptions %}
+            {# chart is assembled from container, data and options #}
+            {% graph "piechart" "out_data" "out_options" %}
+        {% endgooglecharts %}
+
+    </div>
+{% endblock %}
+
