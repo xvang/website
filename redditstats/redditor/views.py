@@ -61,8 +61,11 @@ def search(request):
 
     #context_dict['flot_line'] = chartManager.flot_line_chart()
 
-    context_dict['values'] = [['foo', 32], ['bar', 64], ['baz', 96]]
-
+    context_dict['subreddit_counter'] = redditManager.subreddit_counter_pie_chart()
+    
+    context_dict['karma_counter'] = redditManager.karma_counter_pie_chart()
+    
+    context_dict['karma_progression'] = redditManager.karma_progression_line_chart()
     return render(request, 'search_results.html', context_dict)
   
 
@@ -72,7 +75,7 @@ def test_func(request):
     
     context_dict = {}
     
-    context_dict['values'] = [['foo', 32], ['bar', 64], ['baz', 96]]
+    context_dict['values'] = [['foo', 32], ['bar', 64], ['baz', 96], ['dd', 100]]
     
     
     return render(request, 'test.html', context_dict)

@@ -11,7 +11,7 @@
 {% block body%}
 
     <div >      
-        <p>About the {{adjective}}          
+        <p><!-- About the {{adjective}} -->           
             <a href="http://www.reddit.com/u/{{username}}" target="_blank">/u/{{username}}</a>
         </p>
 
@@ -23,10 +23,11 @@
 
 
     <br><br><br>
-    <div id="piechart"> 
-        {% googlecharts %}
+{% googlecharts %}
+        
+            {#CHART 1#}
             {# named data and options can be reused #}
-            {% data values "out_data" %}
+            {% data subreddit_counter "out_data" %}
                 {% col "string" "Name" %}"{{ val }}"{% endcol %}
                 {% col "number" "Value" %}{{ val }}{% endcol %}
             {% enddata %}
@@ -37,13 +38,44 @@
                 options: {
                     width: 600,
                     height: 480,
+                    title: "Submissions by Subreddits",
 
                 }
             {% endoptions %}
+
+            {# CHART 2#}
+            {% data karma_counter "karma_data" %}
+                {% col "string" "Name" %}"{{ val }}"{% endcol %}
+                {% col "number" "Value" %}{{ val }}{% endcol %}
+            {% enddata %}
+            {# you can also use global javascript variables here, #}
+            {# and call functions #}
+            {% options "karma_options" %}
+                kind: "PieChart",
+                options: {
+                    width: 600,
+                    height: 480,
+                    title: "Karma by Subreddits",
+
+                }
+            {% endoptions %}
+
+
             {# chart is assembled from container, data and options #}
             {% graph "piechart" "out_data" "out_options" %}
-        {% endgooglecharts %}
+            {% graph "karmachart" "karma_data" "karma_options" %}
+            
+{% endgooglecharts %}
 
-    </div>
+
+
+
+
+    <div id="piechart"> </div>
+
+    <br><br>Breaky Breaky<br><br>
+    
+    <div id="karmachart"></div>
+
 {% endblock %}
 

@@ -42,7 +42,7 @@ div.charts{
 }
 
 
-#piechart{
+#piechart, #karmachart{
     display: inline-block;
     margin: 0 auto;
 }
