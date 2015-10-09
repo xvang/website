@@ -1,21 +1,23 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 
 {% block head %}
     <title>my new website</title>
     {% load googlecharts %}
+
+    
 {% endblock %}
 
 
-
 {% block body%}
-
+    <div id='xeng'></div>
     <div >      
         <p><!-- About the {{adjective}} -->           
             <a href="http://www.reddit.com/u/{{username}}" target="_blank">/u/{{username}}</a>
         </p>
 
-        <p>Date joined: {{reddit.date_joined}}</p>
+        <p>Date joined: {{reddit.date_joined}} </p>
         </div> 
 
 
@@ -48,8 +50,6 @@
                 {% col "string" "Name" %}"{{ val }}"{% endcol %}
                 {% col "number" "Value" %}{{ val }}{% endcol %}
             {% enddata %}
-            {# you can also use global javascript variables here, #}
-            {# and call functions #}
             {% options "karma_options" %}
                 kind: "PieChart",
                 options: {
@@ -60,22 +60,51 @@
                 }
             {% endoptions %}
 
+            {# CHART 3#}
+            {% data karma_progression "prog_data" %}
+                {% col "string" "Date" %}"{{ val }}"{% endcol %}
+                {% col "number" "Karma" %}{{ val }}{% endcol %}
+            {% enddata %}
+            {% options "prog_options" %}
+                kind: "LineChart",
+                options: {
+                    width: 600,
+                    height: 480,
+                    title: "Comment Karma Progression",
+
+                }
+            {% endoptions %}
+
 
             {# chart is assembled from container, data and options #}
             {% graph "piechart" "out_data" "out_options" %}
             {% graph "karmachart" "karma_data" "karma_options" %}
-            
+            {% graph "proglinechart" "prog_data" "prog_options" %}
 {% endgooglecharts %}
 
 
 
 
 
-    <div id="piechart"> </div>
+    <div id="piechart" class="chart"> </div>
 
     <br><br>Breaky Breaky<br><br>
     
-    <div id="karmachart"></div>
+    <div id="karmachart" class="chart"></div>
+
+    <br><br>Breaky Again<br><br>
+    
+    <div id="proglinechart" class="chart"></div>
+
+    <br><br>Breaky Again<br><br>
+
+    <div id="regions_div" ></div>
+
+
+    <br><br>Breaky Again<br><br>
+
+    <div id="calendarChart"></div>
+
+    <br><br>Breaky Again<br><br>
 
 {% endblock %}
-

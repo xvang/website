@@ -4,13 +4,6 @@ from redditManager import RedditManager
 from chartManager import ChartManager
 # Create your views here.
 
-from graphos.renderers import flot
-from graphos.sources.model import SimpleDataSource
-from django.shortcuts import render_to_response
-
-from chartit import DataPool, Chart
-from chart.models import MonthlyWeatherByCity
-
 
 
 redditManager = RedditManager()
@@ -61,11 +54,17 @@ def search(request):
 
     #context_dict['flot_line'] = chartManager.flot_line_chart()
 
-    context_dict['subreddit_counter'] = redditManager.subreddit_counter_pie_chart()
+    #Gather all the stats.
+    redditManager.gather_data()
+    
+    context_dict['subreddit_counter'] = redditManager.subreddit_pie_chart()
     
     context_dict['karma_counter'] = redditManager.karma_counter_pie_chart()
     
     context_dict['karma_progression'] = redditManager.karma_progression_line_chart()
+
+    
+    context_dict['xengxeng'] = "xeng was here"
     return render(request, 'search_results.html', context_dict)
   
 

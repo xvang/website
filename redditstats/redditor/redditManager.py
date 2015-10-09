@@ -1,6 +1,8 @@
 import praw
 import time
 import json
+import datetime
+from datetime import date
 
 class RedditManager():
     
@@ -71,26 +73,26 @@ class RedditManager():
         return quotes_json
         
         
-    def subreddit_counter_pie_chart(self):
+    def gather_data(self):
             
         comments = self.redditor.get_comments(time='all', limit=1000)
         self.karma_total = 0
         
-        subreddit_dict = {}
+        self.subreddit_dict = {}
         self.karma_dict = {}
         try:
             for c in comments:
                 str_sub = str(c.subreddit) 
                 
-                #Counts subreddit posts.
-                if not str_sub in subreddit_dict:
-                    subreddit_dict[str_sub] = 1
+                #Counts subreddit posts. For subreddit pie chart.
+                if not str_sub in self.subreddit_dict:
+                    self.subreddit_dict[str_sub] = 1
                     
                 else:
-                    subreddit_dict[str_sub] = subreddit_dict[str_sub]  + 1
+                    self.subreddit_dict[str_sub] = self.subreddit_dict[str_sub]  + 1
                     
                 
-                #Counts karma by subreddit
+                #Counts karma by subreddit. For karma pie chart.
                 if not str_sub in self.karma_dict:
                     self.karma_dict[str_sub] = int(c.ups)
                 else:
@@ -98,6 +100,8 @@ class RedditManager():
                 
                 self.karma_total = self.karma_total + int(c.ups)
                 
+                
+                #For karma progression line chart.
                 
                 
                 #Above, I count the comment karma. So this function does 2 things.
@@ -109,8 +113,11 @@ class RedditManager():
             print("nogo")
             pass
         
-        return subreddit_dict.items()
         
+        
+        
+    def subreddit_pie_chart(self):
+        return self.subreddit_dict.items()
         
     
     def karma_counter_pie_chart(self):
@@ -126,11 +133,53 @@ class RedditManager():
         
         
         
-        
+        #The age of the redditor is broken down into 10 parts.
+        #the 10 will be utc times. They will then get changed into their
+        #word form (May, June, etc). They will be the x-coordinates.
     def karma_progression_line_chart(self):
         
         start = self.redditor.created_utc
-        self.progression_dict = {}
+        
+        end = time.time()
+        
+        interval = (end - start) / 20
+        
+        
+        self.progression_array = []
+        
+        
+        #progression_array is a list of pairs[[x,y],[x,y][x,y]]
+        #'x' is the date, and 'y' is the total karma at that date.
+        self.progression_array.append([self.utc_to_string(start), 0])
+        for x in range(0, 21):
+            
+            self.progression_array.append([self.utc_to_string(start + (interval * x)), 0, 12])
+            
+        
+        
+        comments = self.redditor.get_comments(time='all', limit=1000)
+        
+        
+        for c in comments:
+            
+            utc = c.created_utc
+            
+            for x in self.progression_array:
+                if utc < self.string_to_utc(x[0]):
+                    x[1] = x[1] + c.ups
+                    
+
+        return self.progression_array
+        
+    
+    
+    
+    def utc_to_string(self, utc):
+        return time.strftime("%b  %d, %Y", date.timetuple(date.fromtimestamp(utc)))
+        
+    
+    def string_to_utc(self, string):
+        return time.mktime(datetime.datetime.strptime(string, "%b  %d, %Y").timetuple())
         
         
     
