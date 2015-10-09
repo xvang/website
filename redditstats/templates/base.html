@@ -4,8 +4,15 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
         {% block head %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        
+        
+        <link href='https://fonts.googleapis.com/css?family=Bree+Serif|Gloria+Hallelujah|Old+Standard+TT|Chewy|Amaranth' rel='stylesheet' type='text/css'/>
+        
+        
+        
+        
         {% endblock %}
     </head>
 
@@ -18,32 +25,34 @@
 
 
 
-    {% block static%}
-    
+
+
+
+
+</html>
+
+
+{% block static%}
+
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-   
-        
-        
-        <link href='https://fonts.googleapis.com/css?family=Bree+Serif|Gloria+Hallelujah|Old+Standard+TT|Chewy|Amaranth' rel='stylesheet' type='text/css'/>
+
+         <link href='https://fonts.googleapis.com/css?family=Bree+Serif|Gloria+Hallelujah|Old+Standard+TT|Chewy|Amaranth' rel='stylesheet' type='text/css'/> 
 
         <script>
     /*To pass in django stuff to Javascript, I declare Javascript variables here as global variables.*/
             var $terms = {{ reddit.quotes|safe }};
             var xeng = "{{ xengxeng }}";
             googleChartStack = [];
+            pie_chart_subreddit = {{ pie_subreddit|safe }};
+            alert(pie_subreddit);
         </script>
+
 
             <!-- modernizr enables HTML5 elements and feature detects -->
 
     <script type="text/javascript" src="{% static 'js/info.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/my_charts.js' %}"></script>
-    
+
 
     {% endblock %}
-
-
-
-
-</html>

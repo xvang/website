@@ -1,13 +1,18 @@
 from django.shortcuts import render
 
 from redditManager import RedditManager
-from chartManager import ChartManager
+
+
+try:
+    import json
+except:
+    import django.utils.simplejson as json
 # Create your views here.
 
 
 
 redditManager = RedditManager()
-chartManager = ChartManager(redditManager)
+
 
 
 
@@ -57,7 +62,7 @@ def search(request):
     #Gather all the stats.
     redditManager.gather_data()
     
-    context_dict['subreddit_counter'] = redditManager.subreddit_pie_chart()
+    context_dict['subreddit_counter'] =redditManager.subreddit_pie_chart()
     
     context_dict['karma_counter'] = redditManager.karma_counter_pie_chart()
     
@@ -65,6 +70,8 @@ def search(request):
 
     
     context_dict['xengxeng'] = "xeng was here"
+    
+    context_dict['pie_subreddit'] = json.dumps(redditManager.subreddit_pie_chart())
     return render(request, 'search_results.html', context_dict)
   
 

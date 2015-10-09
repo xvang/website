@@ -3,9 +3,10 @@
 
 
 {% block head %}
+    {{ block.super }}
     <title>my new website</title>
     {% load googlecharts %}
-
+    
     
 {% endblock %}
 
@@ -98,13 +99,26 @@
 
     <br><br>Breaky Again<br><br>
 
-    <div id="regions_div" ></div>
+    <div id="chart1" class="chart"></div>
 
 
     <br><br>Breaky Again<br><br>
 
-    <div id="calendarChart"></div>
+    <div id="chart2" class="chart"></div>
 
+    <br><br>Breaky Again<br><br>
+
+    <div id="chart3" class="chart"></div>
     <br><br>Breaky Again<br><br>
 
 {% endblock %}
+
+
+{% block static%}
+
+{{ block.super }}
+
+{% endblock %}
+
+
+
