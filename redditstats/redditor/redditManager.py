@@ -142,15 +142,15 @@ class RedditManager():
         interval = (end - start) / 20
         
         
-        self.progression_array = []
+        progression_array = []
         
         
         #progression_array is a list of pairs[[x,y],[x,y][x,y]]
         #'x' is the date, and 'y' is the total karma at that date.
-        self.progression_array.append([self.utc_to_string(start), 0, 0])
+        progression_array.append([self.utc_to_string(start), 0, 0])
         for x in range(0, 21):
             
-            self.progression_array.append([self.utc_to_string(start + (interval * x)), 0, 0])
+            progression_array.append([self.utc_to_string(start + (interval * x)), 0, 0])
             
         
         
@@ -161,7 +161,7 @@ class RedditManager():
             
             utc = c.created_utc
             
-            for x in self.progression_array:
+            for x in progression_array:
                 if utc < self.string_to_utc(x[0]):
                     x[1] = x[1] + c.ups
            
@@ -173,15 +173,42 @@ class RedditManager():
             
             utc = s.created_utc
             
-            for x in self.progression_array:
+            for x in progression_array:
                 if utc < self.string_to_utc(x[0]):
                     x[2] = x[2] + s.ups
 
-        return self.progression_array
+        return progression_array
         
     
+  
+    def calendar_chart(self):
+        calendar_array = []
+        
+        
+        comments = self.redditor.get_comments(time='all', limit=1000, sort='top')
+        
+        counter = 0
+        for c in comments:
+            counter = counter + 1
+            c_uct = c.created_utc
+            
+            date = self.utc_to_struct(c_uct)
+            
+            #Data has to be in format: year, month, day , karma_count
+            date_array = [date.tm_year, date.tm_mon - 1, date.tm_mday, c.ups]
+            
+            calendar_array.append(date_array)
+            
+        print(calendar_array)
+        return calendar_array
     
     
+    
+    
+    def utc_to_struct(self, utc):
+        return date.timetuple(date.fromtimestamp(utc))
+        
+        
     def utc_to_string(self, utc):
         return time.strftime("%b  %d, %Y", date.timetuple(date.fromtimestamp(utc)))
         

@@ -21,16 +21,15 @@ def string_to_utc(string):
     
 r = praw.Reddit("/u/habnpam testing stufffffff")
 
-s = r.get_redditor("drewiepoodle").get_comments(limit=None, sort='top')
+s = r.get_redditor("habnpam")
 
-total = 0
 
-counter = 0
-for submission in s:
-    total = total + submission.ups
-    counter = counter + 1
 
-print(total, counter)
-print(total / counter)
-    
+tt = date.timetuple(date.fromtimestamp(s.created_utc))
+
+print(tt.tm_year)
+
+#tm_mon
+#tm_year
+#tm_day    
     

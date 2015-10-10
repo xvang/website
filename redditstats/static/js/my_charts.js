@@ -124,32 +124,55 @@ function createCharts() {
     
     
     googleChartStack.push(function (){
+
+        data_copy = [];
+    
+        /*data from django is stored: [ [1,2,3,4],[1,2,3,4],[1,2,3,4] ]
+          1 is the year, 2 is the month, 3 is the day, 4 is the karma count.
+          
+          data_copy is stored: [ Date(year, month, day), karma_count ]
+          */
         
+      
+        for (i = 0; i < calendar_act.length; i++){
+            
+            var date = new Date(calendar_act[i][0], calendar_act[i][1], calendar_act[i][2]);
+            
+           
+            data_copy.push([ date, calendar_act[i][3]]);
+        }
+        
+
+        /*d = new Date(calendar_act[1][0], calendar_act[1][1], calendar_act[1][2]);
+        alert(new Date(calendar_act[1][0], calendar_act[1][1], calendar_act[1][2]););
+       */
         var dataTable = new google.visualization.DataTable();
        dataTable.addColumn({ type: 'date', id: 'Date' });
-       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
-       dataTable.addRows([
-          [ new Date(2012, 3, 13), 37032 ],
-          [ new Date(2012, 3, 14), 38024 ],
-          [ new Date(2012, 3, 15), 38024 ],
-          [ new Date(2012, 3, 16), 38108 ],
-          [ new Date(2012, 3, 17), 38229 ],
+       dataTable.addColumn({ type: 'number', id: 'Karma That Day' });
+       /*dataTable.addRows([
+          [ new Date(2012, 0, 13), 37032 ],
+          [ new Date(2012, 0, 14), 38024 ],
+          [ new Date(2012, 0, 15), 38024 ],
+          [ new Date(2012, 0, 16), 38108 ],
+          [ new Date(2012, 0, 17), 38229 ],
           // Many rows omitted for brevity.
-          [ new Date(2013, 9, 4), 38177 ],
-          [ new Date(2013, 9, 5), 38705 ],
-          [ new Date(2013, 9, 12), 38210 ],
-          [ new Date(2013, 9, 13), 38029 ],
-          [ new Date(2013, 9, 19), 38823 ],
-          [ new Date(2013, 9, 23), 38345 ],
-          [ new Date(2013, 9, 24), 38436 ],
-          [ new Date(2013, 9, 30), 38447 ]
-        ]);
+          [ new Date(2013, 10, 4), 38177 ],
+          [ new Date(2013, 10, 5), 38705 ],
+          [ new Date(2013, 10, 12), 38210 ],
+          [ new Date(2013, 10, 13), 38029 ],
+          [ new Date(2013, 10, 19), 38823 ],
+          [ new Date(2013, 10, 23), 38345 ],
+          [ new Date(2013, 10, 24), 38436 ],
+          [ new Date(2013, 10, 30), 38447 ]
+        ]);*/
+        
+        dataTable.addRows(data_copy);
 
        var chart = new google.visualization.Calendar(document.getElementById('calendar-submission-frequency'));
 
        var options = {
-         title: "Posts per day Calendar",
-         height: 350
+         title: "Posts per day Calendar"
+         
        }
         chart.draw(dataTable, options);
     });

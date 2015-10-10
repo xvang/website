@@ -29,12 +29,6 @@ body{
 
 
 
-div.charts{
-    
-    padding:20px;
-    background-color: deepskyblue;
-}
-
 
 #terms{
 
@@ -61,4 +55,9 @@ div.charts{
     margin-left: auto;
     margin-right: auto;
     float: left;
+}
+
+div.calendar-submission-frequency {
+
+    margin: auto;
 }

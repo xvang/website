@@ -76,6 +76,7 @@ def search(request):
     
     context_dict['karma_subreddit'] = json.dumps(redditManager.karma_counter_pie_chart())
     
+    context_dict['calendar_activities'] = json.dumps(redditManager.calendar_chart())
     
     return render(request, 'search_results.html', context_dict)
   
