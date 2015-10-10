@@ -1,0 +1,61 @@
+
+/* Below is how to implement Google charts using Django template tags. 
+ * I decided to render the charts using JavaScript now.
+ * But it took way too long to get this working, so it seems like a waste to just delete it.
+=========================================================================================================================
+{% googlecharts %}
+        
+            {#CHART 1#}
+            {# named data and options can be reused #}
+            {% data subreddit_counter "out_data" %}
+                {% col "string" "Name" %}"{{ val }}"{% endcol %}
+                {% col "number" "Value" %}{{ val }}{% endcol %}
+            {% enddata %}
+            {# you can also use global javascript variables here, #}
+            {# and call functions #}
+            {% options "out_options" %}
+                kind: "PieChart",
+                options: {
+                    width: 600,
+                    height: 480,
+                    title: "Submissions by Subreddits",
+
+                }
+            {% endoptions %}
+
+            {# CHART 2#}
+            {% data karma_counter "karma_data" %}
+                {% col "string" "Name" %}"{{ val }}"{% endcol %}
+                {% col "number" "Value" %}{{ val }}{% endcol %}
+            {% enddata %}
+            {% options "karma_options" %}
+                kind: "PieChart",
+                options: {
+                    width: 600,
+                    height: 480,
+                    title: "Karma by Subreddits",
+
+                }
+            {% endoptions %}
+
+            {# CHART 3#}
+            {% data karma_progression "prog_data" %}
+                {% col "string" "Date" %}"{{ val }}"{% endcol %}
+                {% col "number" "Karma" %}{{ val }}{% endcol %}
+            {% enddata %}
+            {% options "prog_options" %}
+                kind: "LineChart",
+                options: {
+                    width: 600,
+                    height: 480,
+                    title: "Comment Karma Progression",
+
+                }
+            {% endoptions %}
+
+
+            {# chart is assembled from container, data and options #}
+            {% graph "piechart" "out_data" "out_options" %}
+            {% graph "karmachart" "karma_data" "karma_options" %}
+            {% graph "proglinechart" "prog_data" "prog_options" %}
+{% endgooglecharts %}

@@ -71,7 +71,12 @@ def search(request):
     
     context_dict['xengxeng'] = "xeng was here"
     
+ 
     context_dict['pie_subreddit'] = json.dumps(redditManager.subreddit_pie_chart())
+    
+    context_dict['karma_subreddit'] = json.dumps(redditManager.karma_counter_pie_chart())
+    
+    
     return render(request, 'search_results.html', context_dict)
   
 

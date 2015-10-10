@@ -2,4 +2,7 @@ Get the first chart working. flot. sample data has been created. test page is al
 
 ---------------------------------
 
+- finish first chart ................ finished
+- flot ....................... deleted. went with Google Charts.
+ 
 

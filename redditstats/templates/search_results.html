@@ -5,8 +5,18 @@
 {% block head %}
     {{ block.super }}
     <title>my new website</title>
-    {% load googlecharts %}
     
+    
+    <script>
+        var $terms = {{ reddit.quotes|safe }};
+        var xeng = "{{ xengxeng }}";
+        googleChartStack = [];
+        pie_submission_subreddit = {{ pie_subreddit|safe }};
+        pie_karma_subreddit = {{karma_subreddit|safe }};
+        karma_progression = {{ karma_progression|safe }};
+        
+        
+    </script>
     
 {% endblock %}
 
@@ -26,90 +36,26 @@
 
 
     <br><br><br>
-{% googlecharts %}
-        
-            {#CHART 1#}
-            {# named data and options can be reused #}
-            {% data subreddit_counter "out_data" %}
-                {% col "string" "Name" %}"{{ val }}"{% endcol %}
-                {% col "number" "Value" %}{{ val }}{% endcol %}
-            {% enddata %}
-            {# you can also use global javascript variables here, #}
-            {# and call functions #}
-            {% options "out_options" %}
-                kind: "PieChart",
-                options: {
-                    width: 600,
-                    height: 480,
-                    title: "Submissions by Subreddits",
-
-                }
-            {% endoptions %}
-
-            {# CHART 2#}
-            {% data karma_counter "karma_data" %}
-                {% col "string" "Name" %}"{{ val }}"{% endcol %}
-                {% col "number" "Value" %}{{ val }}{% endcol %}
-            {% enddata %}
-            {% options "karma_options" %}
-                kind: "PieChart",
-                options: {
-                    width: 600,
-                    height: 480,
-                    title: "Karma by Subreddits",
-
-                }
-            {% endoptions %}
-
-            {# CHART 3#}
-            {% data karma_progression "prog_data" %}
-                {% col "string" "Date" %}"{{ val }}"{% endcol %}
-                {% col "number" "Karma" %}{{ val }}{% endcol %}
-            {% enddata %}
-            {% options "prog_options" %}
-                kind: "LineChart",
-                options: {
-                    width: 600,
-                    height: 480,
-                    title: "Comment Karma Progression",
-
-                }
-            {% endoptions %}
-
-
-            {# chart is assembled from container, data and options #}
-            {% graph "piechart" "out_data" "out_options" %}
-            {% graph "karmachart" "karma_data" "karma_options" %}
-            {% graph "proglinechart" "prog_data" "prog_options" %}
-{% endgooglecharts %}
 
 
 
 
 
-    <div id="piechart" class="chart"> </div>
 
-    <br><br>Breaky Breaky<br><br>
+   
+    <div id="pie-submission" class="chart"></div>
+
+
+    <br><br>Breaky Again<br><br>
+
+    <div id="pie-karma" class="chart"></div>
+    <br><br>Breaky Again<br><br>
+
+    <div id="karma-progression" class="chart"></div>
+
+    <br><br>Breaky Again<br><br>
+
     
-    <div id="karmachart" class="chart"></div>
-
-    <br><br>Breaky Again<br><br>
-    
-    <div id="proglinechart" class="chart"></div>
-
-    <br><br>Breaky Again<br><br>
-
-    <div id="chart1" class="chart"></div>
-
-
-    <br><br>Breaky Again<br><br>
-
-    <div id="chart2" class="chart"></div>
-
-    <br><br>Breaky Again<br><br>
-
-    <div id="chart3" class="chart"></div>
-    <br><br>Breaky Again<br><br>
 
 {% endblock %}
 

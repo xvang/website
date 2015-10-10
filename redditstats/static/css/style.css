@@ -54,3 +54,11 @@ div.charts{
     margin-left: auto;
     margin-right: auto;
 }
+
+
+.chart-pie{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+}

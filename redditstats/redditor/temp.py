@@ -19,12 +19,18 @@ def string_to_utc(string):
     
     
     
-r = praw.Reddit("/u/habnpam testing stuff")
+r = praw.Reddit("/u/habnpam testing stufffffff")
 
+s = r.get_redditor("drewiepoodle").get_comments(limit=None, sort='top')
 
-me = r.get_redditor("habnpam")
+total = 0
 
+counter = 0
+for submission in s:
+    total = total + submission.ups
+    counter = counter + 1
 
-t = me.comment_karma
-
-print(t)
+print(total, counter)
+print(total / counter)
+    
+    

@@ -122,9 +122,6 @@ class RedditManager():
     
     def karma_counter_pie_chart(self):
         
-        print(self.karma_dict.keys())
-        
-        
         for key in self.karma_dict:
             if self.karma_dict[key] < 0:
                 self.karma_dict[key] = 1
@@ -150,14 +147,14 @@ class RedditManager():
         
         #progression_array is a list of pairs[[x,y],[x,y][x,y]]
         #'x' is the date, and 'y' is the total karma at that date.
-        self.progression_array.append([self.utc_to_string(start), 0])
+        self.progression_array.append([self.utc_to_string(start), 0, 0])
         for x in range(0, 21):
             
-            self.progression_array.append([self.utc_to_string(start + (interval * x)), 0, 12])
+            self.progression_array.append([self.utc_to_string(start + (interval * x)), 0, 0])
             
         
         
-        comments = self.redditor.get_comments(time='all', limit=1000)
+        comments = self.redditor.get_comments(time='all', limit=1000, sort='top')
         
         
         for c in comments:
@@ -167,8 +164,21 @@ class RedditManager():
             for x in self.progression_array:
                 if utc < self.string_to_utc(x[0]):
                     x[1] = x[1] + c.ups
-                    
+           
+        
+        
+        submissions = self.redditor.get_submitted(time='all', limit=1000, sort='top')
+        
+        for s in submissions:
+            
+            utc = s.created_utc
+            
+            for x in self.progression_array:
+                if utc < self.string_to_utc(x[0]):
+                    x[2] = x[2] + s.ups
 
+
+        print(self.progression_array)
         return self.progression_array
         
     
