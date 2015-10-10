@@ -20,10 +20,10 @@ class RedditManager():
         try:
             birthday_utc = self.r.get_redditor(username).created_utc
         except:
-            print("False")
+           
             return False
         
-        print("True")
+       
         return True
         
     
@@ -177,8 +177,6 @@ class RedditManager():
                 if utc < self.string_to_utc(x[0]):
                     x[2] = x[2] + s.ups
 
-
-        print(self.progression_array)
         return self.progression_array
         
     
