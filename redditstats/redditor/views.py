@@ -76,7 +76,7 @@ def search(request):
     
     context_dict['karma_subreddit'] = json.dumps(redditManager.karma_counter_pie_chart())
     
-    context_dict['calendar_activities'] = json.dumps(redditManager.calendar_chart())
+    context_dict['pie_impact'] = json.dumps(redditManager.impact_pie_chart())
     
     return render(request, 'search_results.html', context_dict)
   
@@ -87,7 +87,7 @@ def test_func(request):
     
     context_dict = {}
     
-    context_dict['values'] = [['foo', 32], ['bar', 64], ['baz', 96], ['dd', 100]]
+    #context_dict['data'] = json.dumps(redditManager.get_the_mods())
     
     
     return render(request, 'test.html', context_dict)

@@ -2,6 +2,10 @@ import praw
 import time
 import json
 import datetime
+import re
+import operator
+
+from django.utils.encoding import smart_str
 from datetime import date
 
 class RedditManager():
@@ -10,10 +14,6 @@ class RedditManager():
     def __init__(self):
         self.r = praw.Reddit("/u/habnpam testing stuff")
 
-    
-    def fetch_user(self, username):
-        dd= 33
-        
     
     def user_exists(self, username):
         
@@ -177,33 +177,41 @@ class RedditManager():
                 if utc < self.string_to_utc(x[0]):
                     x[2] = x[2] + s.ups
 
+   
         return progression_array
         
-    
-  
-    def calendar_chart(self):
-        calendar_array = []
         
+    
+    def impact_pie_chart(self):
         
         comments = self.redditor.get_comments(time='all', limit=1000, sort='top')
+    
+        impact_dict = {}
         
-        counter = 0
+        
+        
+        
         for c in comments:
-            counter = counter + 1
-            c_uct = c.created_utc
             
-            date = self.utc_to_struct(c_uct)
+            string = smart_str(c.body)
+            string = re.sub(r'([^\s\w]|_)+', '', string)
+            string = string.split()
             
-            #Data has to be in format: year, month, day , karma_count
-            date_array = [date.tm_year, date.tm_mon - 1, date.tm_mday, c.ups]
-            
-            calendar_array.append(date_array)
-            
-        print(calendar_array)
-        return calendar_array
-    
-    
-    
+            for word in string:
+                if word in impact_dict:
+                    impact_dict[word] = impact_dict[word] + 1
+                else:
+                    impact_dict[word] = 1
+                    
+        #this sorts the dict by value into a tuple(? list?) 
+        #[-100:] give us the last 100 values. the top 100 used words.
+        sorted_x = sorted(impact_dict.items(), key=operator.itemgetter(1))[-100:]
+        
+        
+        for x in range (0, len(sorted_x)):
+            sorted_x[x] = list(sorted_x[x])
+        print(sorted_x)
+        return sorted_x
     
     def utc_to_struct(self, utc):
         return date.timetuple(date.fromtimestamp(utc))
@@ -218,9 +226,7 @@ class RedditManager():
         
         
     
-        
-        
-        
+   
         
         
         

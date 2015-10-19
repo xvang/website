@@ -1,33 +1,24 @@
-{% extends 'base.html' %}
+{%load staticfiles %}
 
 
-{% block head %}
-
-{% load googlecharts %}
-{% endblock %}
-
-
-{% block body %}
-
-<div id="out"></div>
-{% googlecharts %}
-    {# named data and options can be reused #}
-    {% data values "out_data" %}
-        {% col "string" "Name" %}"{{ val }}"{% endcol %}
-        {% col "number" "Value" %}{{ val }}{% endcol %}
-    {% enddata %}
-    {# you can also use global javascript variables here, #}
-    {# and call functions #}
-    {% options "out_options" %}
-        kind: "PieChart",
-        options: {
-            width: 900,
-            height: 720,
+<html>
+<head>
+    <script>
+    
+        data = "{{data|safe}}";
         
-        }
-    {% endoptions %}
-    {# chart is assembled from container, data and options #}
-    {% graph "out" "out_data" "out_options" %}
-{% endgooglecharts %}
+    </script>
 
-{% endblock %}
+<script type="text/javascript"
+        src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['sankey']}]}"></script>
+
+</head>
+
+<body>
+    <div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+    
+</body>
+
+
+</html>

@@ -61,3 +61,11 @@ div.calendar-submission-frequency {
 
     margin: auto;
 }
+
+#word-cloud{
+    width: 600px;
+    height: 400px;
+    margin-left:auto;
+    margin-right:auto;
+    display:inline-block;
+}
