@@ -89,8 +89,8 @@ function createCharts() {
           
           legend: { position: 'bottom' },
           width: 600,
-          height: 480
-          
+          height: 480,
+          weightFactor: 100,
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('karma-progression'));
@@ -149,7 +149,7 @@ function drawWordCloud(){
 }
 
 function clickedWordCloud(item, dimension, event){
-    alert(item);
+    alert(item[0]);
 }
 $(document).ready(function () {
     
